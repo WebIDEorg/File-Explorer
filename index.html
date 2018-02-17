@@ -4,6 +4,22 @@
 <head>
     <title>WebIDE File Explorer</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <script>
+        $(function() {
+            $('#jstree').jstree();
+            $('#jstree').on("changed.jstree", function(e, data) {
+                console.log(data.selected);
+            });
+            $('button').on('click', function() {
+                $('#jstree').jstree(true).select_node('child_node_1');
+                $('#jstree').jstree('select_node', 'child_node_1');
+                $.jstree.reference('#jstree').select_node('child_node_1');
+            });
+        });
+    </script>
     <style>
         h1 {
             color: aqua;
@@ -24,6 +40,23 @@
     <div id="explorer.exe">
         <div style="width:100%;height:25px;background-color:rgb(85, 255, 255);border:2px groove;">
             <img style="height:100%;width:100%;" src="Assets/bar.png">
+        </div>
+        <div style="width:100%;height:25px;background-color:rgb(85, 255, 255);border:2px groove;">
+            <div>
+                <div id="jstree" style="width:100%;border:5px  groove;">
+                    <ul>
+                        <li>Root
+                            <ul>
+                                <li id="child_node_1">Child node 1</li>
+                                <li>Child node 2</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+
+            </div>
         </div>
     </div>
 </body>
